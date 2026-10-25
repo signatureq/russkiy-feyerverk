@@ -105,6 +105,7 @@ button { font: inherit; cursor: pointer; }
   color: var(--ember-text);
 }
 .eyebrow--light { color: var(--gold); }
+.hero-orn { display: inline-flex; }
 .spark {
   width: 14px; height: 14px; flex: none;
   background: currentColor;
@@ -1117,6 +1118,25 @@ button { font: inherit; cursor: pointer; }
   .hero-stats li + li { padding-left: 0; border-left: 0; }
   .hero-stats li:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--line-light); }
   .hero-stats li:nth-child(n+3) { border-top: 1px solid var(--line-light); }
+  .hero-stats li, .hero-stats li + li, .hero-stats li:nth-child(even) { padding: 20px 12px; align-items: center; text-align: center; }
+
+  /* Первый экран по центру: заголовок, под ним подпись с орнаментом */
+  .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .hero h1 { order: 1; }
+  .hero-eyebrow { order: 2; flex-direction: column; gap: 12px; margin: 26px 0 0; }
+  .hero-orn { display: flex; align-items: center; gap: 12px; }
+  .hero-orn::before, .hero-orn::after {
+    content: "";
+    width: 56px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .hero-orn::after { transform: scaleX(-1); }
+  .hero-eyebrow-text { display: flex; flex-direction: column; gap: 4px; line-height: 1.45; }
+  .hero-eyebrow-sep { display: none; }
+  .hero-lead { order: 3; margin-top: 22px; text-wrap: balance; }
+  .hero-actions { order: 4; justify-content: center; }
+  .hero-visual { margin: 0 auto; }
 
   .split-head { grid-template-columns: 1fr; gap: 20px; }
   .clients-head { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -1149,7 +1169,7 @@ button { font: inherit; cursor: pointer; }
   .logo-text b { font-size: 14px; }
   .logo-text small { font-size: 10.5px; }
 
-  .hero-actions { flex-direction: column; }
+  .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions .btn { width: 100%; }
   .hero-visual { padding: 0 0 48px 16px; }
   .hv-badge { width: 104px; height: 104px; top: -26px; right: -6px; }
