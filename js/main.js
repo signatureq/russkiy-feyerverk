@@ -210,7 +210,7 @@
   }
 
   /* ---------- Салют на фоне ---------- */
-  var COLORS = ['#FFC824', '#FFD966', '#FF8A3D', '#FF5A7A', '#8FD8FF', '#C9A6FF', '#FFF4CC'];
+  var COLORS = ['#FFC824', '#FFD966', '#FFB13B', '#FF8A3D', '#FF5A3D', '#FFF4CC'];
 
   function fireworks(canvas, opts) {
     var ctx = canvas.getContext('2d');
