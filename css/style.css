@@ -380,64 +380,103 @@ button { font: inherit; cursor: pointer; }
 }
 .split-head-text { display: grid; gap: 14px; color: var(--muted); font-size: 17px; }
 
-/* ---------- Теги: ассортимент / марки ---------- */
-.tags-row {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  margin-bottom: 40px;
-  border-radius: 24px;
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
   overflow: hidden;
-  color: var(--white);
-  background: var(--night);
-  box-shadow: var(--shadow);
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
-.tags-block { padding: 36px 40px 40px; }
-.tags-block + .tags-block { border-left: 1px solid var(--line-light); }
-.tags-head {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
+
+/* ---------- Ассортимент: список-афиша ---------- */
+#assortment { overflow-x: clip; }
+.range {
+  padding: 48px 0 52px;
+  border-top: 1px solid var(--line);
+  text-align: center;
 }
-.tags-icon {
-  flex: none;
-  width: 48px;
-  height: 48px;
+.range-head { max-width: 560px; margin: 0 auto 30px; }
+.range-head h3 { font-size: 24px; font-weight: 700; }
+.range-head p { margin-top: 10px; font-size: 16px; color: var(--muted); text-wrap: balance; }
+.range-list {
   display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--gold);
-  color: var(--night);
-  box-shadow: 0 0 0 6px rgba(255, 200, 36, .15);
-}
-.tags-icon .spark { width: 20px; height: 20px; }
-.tags-head h3 { font-size: 21px; font-weight: 600; }
-.tags-head p { margin-top: 2px; font-size: 15px; color: var(--muted-light); }
-.tags { display: flex; flex-wrap: wrap; gap: 10px; }
-.tags li {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 9px 16px;
-  border-radius: 999px;
-  font-size: 15px;
+  gap: 4px;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 2.25rem);
   font-weight: 600;
-  background: rgba(255, 255, 255, .07);
-  border: 1px solid rgba(255, 255, 255, .16);
-  transition: border-color .2s, background-color .2s;
+  line-height: 1.3;
+  letter-spacing: -.01em;
 }
-.tags li::before {
+.range-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.range-list li:not(:last-child)::after {
   content: "";
-  width: 9px;
-  height: 9px;
-  flex: none;
-  background: var(--gold);
+  display: inline-block;
+  vertical-align: .12em;
+  width: .42em;
+  height: .42em;
+  margin: 0 .6em;
+  background: var(--ember);
   clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
 }
-.tags li:hover { border-color: var(--gold); background: rgba(255, 200, 36, .1); }
-.tags--brand li { background: var(--gold); border-color: var(--gold); color: var(--night); font-weight: 700; }
-.tags--brand li::before { background: var(--night); }
-.tags--brand li:hover { background: #FFD65C; }
+
+/* ---------- Торговые марки: бегущая лента ---------- */
+.brands { margin: 12px 0 72px; }
+.brands-label {
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tape {
+  display: flex;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+  background: var(--gold);
+  color: var(--night);
+  box-shadow: 0 16px 40px -20px rgba(200, 140, 0, .7);
+}
+.tape-track {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  animation: tape 70s linear infinite;
+}
+.tape-track li {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+.tape-track li::after {
+  content: "";
+  flex: none;
+  width: .62em;
+  height: .62em;
+  margin: 0 1.1em;
+  background: currentColor;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+}
+.tape:hover .tape-track { animation-play-state: paused; }
+@keyframes tape { to { transform: translateX(-100%); } }
 
 /* ---------- Галерея ---------- */
 .gallery {
@@ -1029,6 +1068,8 @@ button { font: inherit; cursor: pointer; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
   .js .reveal { opacity: 1; transform: none; }
   .js .ladder-bar i { transform: none; }
+  .tape-track { flex: 1; flex-wrap: wrap; justify-content: center; row-gap: 8px; padding: 16px 20px; animation: none !important; }
+  .tape-track + .tape-track, .tape-track li:nth-child(n+6) { display: none; }
 }
 
 /* ==========================================================
@@ -1078,8 +1119,6 @@ button { font: inherit; cursor: pointer; }
   .hero-stats li:nth-child(n+3) { border-top: 1px solid var(--line-light); }
 
   .split-head { grid-template-columns: 1fr; gap: 20px; }
-  .tags-row { grid-template-columns: 1fr; }
-  .tags-block + .tags-block { border-left: 0; border-top: 1px solid var(--line-light); }
   .clients-head { flex-direction: column; align-items: flex-start; gap: 10px; }
   .clients-list { grid-template-columns: repeat(6, 1fr); }
   .clients-list li { grid-column: span 2; }
@@ -1118,13 +1157,12 @@ button { font: inherit; cursor: pointer; }
   .hv-badge span { font-size: 9.5px; }
   .hero-stats span { font-size: 14px; }
 
-  .tags-block { padding: 26px 20px 28px; }
-  .tags-head { gap: 14px; margin-bottom: 18px; }
-  .tags-icon { width: 42px; height: 42px; }
-  .tags-head h3 { font-size: 18px; }
-  .tags-head p { font-size: 14px; }
-  .tags { gap: 7px; }
-  .tags li { padding: 7px 13px; gap: 7px; font-size: 14px; }
+  .range { padding: 36px 0 40px; }
+  .range-head { margin-bottom: 22px; }
+  .range-head h3 { font-size: 20px; }
+  .range-head p { font-size: 15px; }
+  .brands { margin-bottom: 56px; }
+  .tape-track { padding: 14px 0; }
   .clients { margin-top: 56px; }
   .clients-list { grid-template-columns: 1fr 1fr; gap: 10px; }
   .clients-list li, .clients-list li:nth-child(n+4) { grid-column: auto; }
@@ -1163,4 +1201,11 @@ button { font: inherit; cursor: pointer; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-brand { grid-column: auto; }
   .footer-bottom { flex-direction: column; gap: 8px; }
+}
+
+/* Ассортимент в столбик, пока строки афиши не помещаются в ширину */
+@media (max-width: 700px) {
+  .range-list { gap: 0; font-size: clamp(.95rem, calc((100vw - 32px) / 18.6), 1.2rem); line-height: 1.4; }
+  .range-list ul { flex-direction: column; }
+  .range-list li:not(:last-child)::after { display: none; }
 }
