@@ -47,7 +47,7 @@
 
   /* ---------- Появление при прокрутке ---------- */
   var revealGroups = [
-    '.section-head', '.split-head > *', '.range', '.brands', '.clients',
+    '.section-head', '.split-head > *', '.compare-card', '.season-cta', '.range', '.brands', '.clients',
     '.g-item', '.benefit', '.term', '.discounts', '.b-item',
     '.return-info', '.steps', '.about-photo', '.about-card', '.cert', '.contacts-info', '.map'
   ];
